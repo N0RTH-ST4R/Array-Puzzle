@@ -2,7 +2,6 @@ const prompt=require('prompt-sync')()
 console.clear()
 console.log('---RULES---')
 console.log("You can add a number to each index, but the numbers to the left and right are increased by twice the amount")
-console.log("Note: the array indices start at 0, not 1")
 prompt("[ENTER]")
 var arr=[0,0,0,0]
 var solved=[0,0,0,0]
@@ -37,17 +36,17 @@ function gameCycle(){
     console.log("Solved state: "+solved)
     console.log(arr)
     let ind=prompt("What index? ")
-    let v=prompt("How much? ")
-    if(ind=="quit" || v=="quit"){
+    if(ind=="quit"){
         process.exit()
     }
+    let v=prompt("How much? ")
     move(parseInt(ind-1),parseInt(v))
     if(arr==solved){
         console.log("Solved!")
         process.exit()
     }
 }
-scramble(1)
+scramble(parseInt(prompt("How many moves in scramble? (> 0) ")))
 while(true){
     gameCycle()
 }
