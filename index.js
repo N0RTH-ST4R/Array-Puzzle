@@ -31,6 +31,16 @@ function scramble(moves){
         moveSolve(ind,v)
     }
 }
+Array.prototype.compareTo=function(arr){
+    var check=true
+    for(let i=0;i<this.length;i++){
+        if(this[i]!=arr[i]){
+            check=false
+        }
+    }
+    return check
+    
+}
 function gameCycle(){
     console.clear()
     console.log("Solved state: "+solved)
@@ -41,12 +51,15 @@ function gameCycle(){
     }
     let v=prompt("How much? ")
     move(parseInt(ind-1),parseInt(v))
-    if(arr==solved){
+    var checkArr=[]
+    if(arr.compareTo(solved)){
+        console.clear()
         console.log("Solved!")
+        console.log(arr)
         process.exit()
+    }else{
+        gameCycle()
     }
 }
 scramble(parseInt(prompt("How many moves in scramble? (> 0) ")))
-while(true){
-    gameCycle()
-}
+gameCycle()
